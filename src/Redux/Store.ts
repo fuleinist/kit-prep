@@ -2,7 +2,7 @@
 
 import {createStore, Store} from 'redux';
 import reducer from './reducer';
-import {create} from './redux-react-hook';
+import {create} from 'redux-react-hook';
 
 export interface IState {
   lastUpdated: number;

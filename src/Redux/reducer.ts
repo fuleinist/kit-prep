@@ -15,7 +15,11 @@ export default function reducer(state: IState = INITIAL_STATE, action: Action) {
     case 'delete todo': {
       const todos = state.todos.slice();
       todos.splice(action.index, 1);
-      return {...state, lastUpdated: Date.now(), todos};
+      return {
+        ...state, 
+        lastUpdated: Date.now(),
+        todos
+      };
     }
 
     default:

@@ -2,8 +2,8 @@
 
 import {css} from 'emotion';
 import React from 'react';
-import TodoInput from './TodoInput';
-import TodoList from './TodoList';
+import TodoInput from './Components/Todo/TodoInput';
+import TodoList from './Components/Todo/TodoList';
 
 export default function App() {
   return (

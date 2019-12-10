@@ -2,10 +2,10 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {StoreContext} from './Store';
+import {StoreContext} from './Redux/Store';
 
 import App from './App';
-import {makeStore} from './Store';
+import {makeStore} from './Redux/Store';
 
 const store = makeStore();
 
