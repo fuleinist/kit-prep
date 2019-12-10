@@ -23,6 +23,8 @@
   "devDependencies": {
     "@types/react": "^16.9.6",
     "@types/react-dom": "^16.9.2",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.1.0",
     "typescript": "^3.6.4"
   },
   "browserslist": [
