@@ -2,7 +2,7 @@
 
 import {css} from 'emotion';
 import React, {useCallback} from 'react';
-import {IState, useMappedState} from './Store';
+import {IState, useMappedState} from '../../Redux/Store';
 import TodoItem from './TodoItem';
 
 export default function TodoList() {

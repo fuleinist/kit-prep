@@ -2,7 +2,7 @@
 
 import {css} from 'emotion';
 import React, {useState} from 'react';
-import {useDispatch} from './Store';
+import {useDispatch} from '../../Redux/Store';
 
 export default function TodoInput() {
   const [newTodo, setNewTodo] = useState('');

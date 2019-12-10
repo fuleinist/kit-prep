@@ -2,8 +2,8 @@
 
 import {css} from 'emotion';
 import React, {useCallback} from 'react';
-import {useDispatch, useMappedState} from './Store';
-import {IState} from './Store';
+import {useDispatch, useMappedState} from '../../Redux/Store';
+import {IState} from '../../Redux/Store';
 
 export default function TodoItem({index}: {index: number}) {
   const {todo, deleteTodo} = useTodo(index);
