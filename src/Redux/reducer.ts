@@ -1,24 +1,46 @@
 // Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved
 
-import {Action, IState, INITIAL_STATE} from './Store';
+import {Action, IState, IRequest, INITIAL_STATE} from './Store';
 
 export default function reducer(state: IState = INITIAL_STATE, action: Action) {
   switch (action.type) {
-    case 'add todo': {
+    case 'add request': {
+      state.requests.push(action.request);
+      const requests: IRequest[] = state.requests;
       return {
         ...state,
         lastUpdated: Date.now(),
-        todos: state.todos.concat(action.todo),
+        requests,
       };
     }
 
-    case 'delete todo': {
-      const todos = state.todos.slice();
-      todos.splice(action.index, 1);
+    case 'delete request': {
+      const requests = state.requests.slice();
+      requests.splice(action.index, 1);
       return {
         ...state, 
         lastUpdated: Date.now(),
-        todos
+        requests
+      };
+    }
+
+    case 'add inventory': {
+      state.inventories.push(action.inventory);
+      const inventories: IRequest[] = state.inventories;
+      return {
+        ...state,
+        lastUpdated: Date.now(),
+        inventories,
+      };
+    }
+
+    case 'delete inventory': {
+      const inventories = state.inventories.slice();
+      inventories.splice(action.index, 1);
+      return {
+        ...state, 
+        lastUpdated: Date.now(),
+        inventories
       };
     }
 

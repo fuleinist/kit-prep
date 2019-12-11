@@ -2,15 +2,15 @@
 
 import {css} from 'emotion';
 import React from 'react';
-import TodoInput from './Components/Todo/TodoInput';
-import TodoList from './Components/Todo/TodoList';
+import RequestInput from './Components/Request/RequestInput';
+import RequestList from './Components/Request/RequestList';
 
 export default function App() {
   return (
     <div className={styles.root}>
-      <h1>Todo</h1>
-      <TodoInput />
-      <TodoList />
+      <h1>Request</h1>
+      <RequestInput />
+      <RequestList />
     </div>
   );
 }

@@ -1,26 +1,24 @@
-// Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved
-
 import {css} from 'emotion';
 import React, {useState} from 'react';
-import {useDispatch} from './Store';
+import {useDispatch} from '../../Redux/Store';
 
-export default function TodoInput() {
-  const [newTodo, setNewTodo] = useState('');
+export default function InventoryInput(): JSX.Element {
+  const [newInventory, setNewInventory] = useState('');
   const dispatch = useDispatch();
 
   return (
     <input
       className={styles.root}
       type="text"
-      onChange={e => setNewTodo(e.target.value)}
+      onChange={e => setNewInventory(e.target.value)}
       onKeyDown={e => {
         if (e.key === 'Enter') {
-          dispatch({type: 'add todo', todo: newTodo});
-          setNewTodo('');
+          dispatch({type: 'add Inventory', Inventory: newInventory});
+          setNewInventory('');
         }
       }}
       placeholder="What needs to be done?"
-      value={newTodo}
+      value={newInventory}
     />
   );
 }

@@ -4,20 +4,38 @@ import {createStore, Store} from 'redux';
 import reducer from './reducer';
 import {create} from 'redux-react-hook';
 
+export interface GeneralItem {
+  name: string;
+  count: number;
+}
+
+export interface IRequest extends GeneralItem {}
+
+export interface IInventory extends GeneralItem {}
+
 export interface IState {
   lastUpdated: number;
-  todos: string[];
+  requests: IRequest[];
+  inventories: IInventory[];
 }
 
 export type Action =
   | {
-      type: 'add todo';
-      todo: string;
+      type: 'add request';
+      request: IRequest;
     }
   | {
-      type: 'delete todo';
+      type: 'delete request';
       index: number;
-    };
+    }
+  | {
+    type: 'add inventory';
+    inventory: IInventory;
+  }
+| {
+    type: 'delete inventory';
+    index: number;
+  };
 
 export function makeStore(): Store<IState, Action> {
   return createStore(reducer, INITIAL_STATE);
@@ -25,16 +43,14 @@ export function makeStore(): Store<IState, Action> {
 
 export const INITIAL_STATE: IState = {
   lastUpdated: 0,
-  todos: [
-    'Make the fire!',
-    'Fix the breakfast!',
-    'Wash the dishes!',
-    'Do the mopping!',
+  requests: [
+    { name:'Cake', count: 5 },
+    { name:'Biscuit', count: 5 }
+  ],
+  inventories: [
+    { name:'Cake', count: 5 },
+    { name:'Biscuit', count: 5 }
   ],
 };
 
-export const {StoreContext, useDispatch, useMappedState} = create<
-  IState,
-  Action,
-  Store<IState, Action>
->();
+export const {StoreContext, useDispatch, useMappedState} = create();

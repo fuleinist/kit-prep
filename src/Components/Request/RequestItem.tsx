@@ -2,32 +2,32 @@
 
 import {css} from 'emotion';
 import React, {useCallback} from 'react';
-import {useDispatch, useMappedState} from './Store';
-import {IState} from './Store';
+import {useDispatch, useMappedState} from '../../Redux/Store';
+import {IState} from '../../Redux/Store';
 
-export default function TodoItem({index}: {index: number}) {
-  const {todo, deleteTodo} = useTodo(index);
+export default function RequestItem({index}: {index: number}): JSX.Element {
+  const {Request, deleteRequest} = useRequest(index);
 
   return (
     <li className={styles.root}>
-      <span>{todo}</span>
-      <button onClick={deleteTodo}>Delete</button>
+      <span>{Request}</span>
+      <button onClick={deleteRequest}>Delete</button>
     </li>
   );
 }
 
 // Example of creating a custom hook to encapsulate the store
-function useTodo(index: number): {todo: string; deleteTodo: () => void} {
-  const todo = useMappedState(
-    useCallback((state: IState) => state.todos[index], [index]),
+function useRequest(index: number): {Request: string; deleteRequest: () => void} {
+  const Request = useMappedState(
+    useCallback((state: IState) => state.requests[index], [index]),
   );
 
   const dispatch = useDispatch();
-  const deleteTodo = useCallback(() => dispatch({type: 'delete todo', index}), [
+  const deleteRequest = useCallback(() => dispatch({type: 'delete Request', index}), [
     dispatch,
     index,
   ]);
-  return {todo, deleteTodo};
+  return {Request, deleteRequest};
 }
 
 const styles = {
