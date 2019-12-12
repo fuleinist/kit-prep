@@ -3,22 +3,22 @@ import React, {useState} from 'react';
 import {useDispatch} from '../../Redux/Store';
 
 export default function InventoryInput(): JSX.Element {
-  const [newInventory, setNewInventory] = useState('');
+  const [inventory, setInventory] = useState('');
   const dispatch = useDispatch();
 
   return (
     <input
       className={styles.root}
       type="text"
-      onChange={e => setNewInventory(e.target.value)}
+      onChange={e => setInventory(e.target.value)}
       onKeyDown={e => {
         if (e.key === 'Enter') {
-          dispatch({type: 'add Inventory', Inventory: newInventory});
-          setNewInventory('');
+          dispatch({type: 'add Inventory', Inventory: inventory});
+          setInventory('');
         }
       }}
-      placeholder="What needs to be done?"
-      value={newInventory}
+      placeholder="New Inventory"
+      value={inventory}
     />
   );
 }
