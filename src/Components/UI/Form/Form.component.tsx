@@ -1,31 +1,43 @@
-import React, { SyntheticEvent } from 'react';
+import React from 'react';
 import { Input } from '../Input/Input.component';
 
 import { IForm } from './Form.component.props';
-import { TInput } from '../Input/Input.component.props';
+import { InputProps } from '../Input/Input.component.props';
 
-/** Type workaround for https://github.com/Microsoft/TypeScript/issues/7294#issuecomment-465794460 */
-export function elemT<T>(array: T): Array<TInput> {
+/** Typescript issue workaround https://github.com/Microsoft/TypeScript/issues/7294#issuecomment-465794460 */
+export function elemT<T>(array: T): Array<InputProps<String>> {
   return array as any
 }
 
 export const Form = (props: IForm): JSX.Element => {
-  const { inputs, ...rest } = {
+  const { inputs, onsubmit, onchange, onclick, ...rest } = {
     ...props,
   };
+  console.log(inputs)
 
-  const handleChange = (event: SyntheticEvent) => {
-    console.log('Changed: ' + event.target);
-  }
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleClick = onclick || ((event) => {
     event.preventDefault();
-    console.log('Submitted: ' + event.target);
-  }
+    console.log('Clicked');
+    console.log(event.target);
+  })
+
+  const handleChange = onchange || ((event) => {
+    event.preventDefault();
+    console.log('Updated');
+    console.log(event.target);
+  })
+
+  const handleSubmit = onsubmit || ((event) => {
+    console.log('Submitted');
+    console.log(event.target);
+  })
+  
   return (
-    <form onSubmit={handleSubmit}>
-      {(inputs && Array.isArray(inputs))? elemT(inputs).map(({type, value, variable}: TInput, key: number) => (
-        <Input key={key} type={type} value={value} variable={variable} />
+    <form onSubmit={handleSubmit} {...rest}>
+      {(inputs && Array.isArray(inputs))? elemT(inputs).map(({type, value, variable, ...rest}: InputProps<String>, key: number) => (
+        <Input onChange={handleChange} onClick={(type === 'button') ? handleClick : ()=>({})} key={key} type={type} value={value} variable={variable} {...rest} />
       )) : null}
+      {handleChange? null : <input type="submit" value="Update" />}
     </form>
   );
 };

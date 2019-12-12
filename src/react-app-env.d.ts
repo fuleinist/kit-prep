@@ -4,3 +4,6 @@
 
 declare module 'redux-react-hook';
 declare module 'react-testing-library';
+
+declare module '@storybook/addon-knobs';
+declare module '@storybook/addon-a11y';

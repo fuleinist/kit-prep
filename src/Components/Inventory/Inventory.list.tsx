@@ -3,7 +3,7 @@
 import {css} from 'emotion';
 import React, {useCallback} from 'react';
 import {IState, useMappedState} from '../../Redux/Store';
-import InventoryItem from './InventoryItem';
+import InventoryItem from './Inventory.item';
 
 export default function InventoryList() {
   const {lastUpdated, InventoryCount} = useMappedState(

@@ -19,11 +19,21 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "SET BABEL_ENV=development&&start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@storybook/addon-a11y": "^5.2.8",
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-knobs": "^5.2.8",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/react": "^5.2.8",
     "@types/react": "^16.9.6",
     "@types/react-dom": "^16.9.2",
+    "babel-loader": "^8.0.6",
     "react-testing-library": "^8.0.1",
     "storybook": "^5.1.11",
     "tslint-config-prettier": "^1.18.0",

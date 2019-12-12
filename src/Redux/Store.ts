@@ -15,11 +15,16 @@ export interface IInventory extends GeneralItem {}
 
 export interface IState {
   lastUpdated: number;
+  mode: boolean;
   requests: IRequest[];
   inventories: IInventory[];
 }
 
 export type Action =
+  {
+    type: 'switch mode';
+    mode: boolean;
+  }
   | {
       type: 'add request';
       request: IRequest;
@@ -43,6 +48,7 @@ export function makeStore(): Store<IState, Action> {
 
 export const INITIAL_STATE: IState = {
   lastUpdated: 0,
+  mode: true,
   requests: [
     { name:'Cake', count: 5 },
     { name:'Biscuit', count: 5 }

@@ -3,27 +3,27 @@
 import {css} from 'emotion';
 import React, {useCallback} from 'react';
 import {useDispatch, useMappedState} from '../../Redux/Store';
-import {IState} from '../../Redux/Store';
+import {IState, IInventory} from '../../Redux/Store';
 
 export default function InventoryItem({index}: {index: number}): JSX.Element {
   const {Inventory, deleteInventory} = useInventory(index);
 
   return (
     <li className={styles.root}>
-      <span>{Inventory}</span>
+      <span>{Inventory.name}</span> <span>{Inventory.count}</span>
       <button onClick={deleteInventory}>Delete</button>
     </li>
   );
 }
 
 // Example of creating a custom hook to encapsulate the store
-function useInventory(index: number): {Inventory: string; deleteInventory: () => void} {
+function useInventory(index: number): {Inventory: IInventory; deleteInventory: () => void} {
   const Inventory = useMappedState(
     useCallback((state: IState) => state.inventories[index], [index]),
   );
 
   const dispatch = useDispatch();
-  const deleteInventory = useCallback(() => dispatch({type: 'delete Inventory', index}), [
+  const deleteInventory = useCallback(() => dispatch({type: 'delete inventory', index}), [
     dispatch,
     index,
   ]);

@@ -36,12 +36,21 @@ export default function reducer(state: IState = INITIAL_STATE, action: Action) {
 
     case 'delete inventory': {
       const inventories = state.inventories.slice();
+      console.log(inventories)
       inventories.splice(action.index, 1);
+      console.log(inventories)
       return {
         ...state, 
         lastUpdated: Date.now(),
         inventories
       };
+    }
+
+    case 'switch mode': {
+      return {
+        ...state, 
+        mode: action.mode
+      };      
     }
 
     default:
