@@ -4,6 +4,7 @@ import { withA11y } from '@storybook/addon-a11y';
 import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
+import Test from '../../../Containers/Test/Test.container'
 import { Form } from './Form.component';
 import { IForm } from './Form.component.props';
 
@@ -33,4 +34,4 @@ const mockprops: IForm = {
 storiesOf('Component/UI/Form', module)
   .addDecorator(withA11y)
   .addDecorator(withKnobs)
-  .add('Form', () => <Form {...mockprops}/>)
+  .add('Form', () => <Test><Form {...mockprops}/></Test>)

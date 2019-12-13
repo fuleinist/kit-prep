@@ -1,8 +1,9 @@
 // Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved
 
-import {Action, IState, IRequest, INITIAL_STATE} from './Store';
+import {Action, IState, IRequest, IInventory, INITIAL_STATE} from './Store';
 
 export default function reducer(state: IState = INITIAL_STATE, action: Action) {
+  console.log(action)
   switch (action.type) {
     case 'add request': {
       state.requests.push(action.request);
@@ -11,6 +12,36 @@ export default function reducer(state: IState = INITIAL_STATE, action: Action) {
         ...state,
         lastUpdated: Date.now(),
         requests,
+      };
+    }
+
+    case 'update request': {
+      const requests: IRequest[] = [...state.requests];
+      requests[action.index].name = action.value;
+      return {
+        ...state,
+        lastUpdated: Date.now(),
+        requests
+      };
+    }
+
+    case 'top up request': {
+      const requests: IRequest[] = [...state.requests];
+      requests[action.index].count++;
+      return {
+        ...state,
+        lastUpdated: Date.now(),
+        requests
+      };
+    }
+
+    case 'top off request': {
+      const requests: IRequest[] = [...state.requests];
+      requests[action.index].count = (requests[action.index].count > 0) ? requests[action.index].count - 1 : 0;
+      return {
+        ...state,
+        lastUpdated: Date.now(),
+        requests
       };
     }
 
@@ -26,11 +57,41 @@ export default function reducer(state: IState = INITIAL_STATE, action: Action) {
 
     case 'add inventory': {
       state.inventories.push(action.inventory);
-      const inventories: IRequest[] = state.inventories;
+      const inventories: IInventory[] = state.inventories;
       return {
         ...state,
         lastUpdated: Date.now(),
         inventories,
+      };
+    }
+
+    case 'update inventory': {
+      const inventories: IInventory[] = [...state.requests];
+      inventories[action.index].name = action.value;
+      return {
+        ...state,
+        lastUpdated: Date.now(),
+        inventories
+      };
+    }
+
+    case 'top up inventory': {
+      const inventories: IInventory[] = [...state.inventories];
+      inventories[action.index].count++;
+      return {
+        ...state,
+        lastUpdated: Date.now(),
+        inventories
+      };
+    }
+
+    case 'top off inventory': {
+      const inventories: IInventory[] = [...state.inventories];
+      inventories[action.index].count = (inventories[action.index].count > 0) ? inventories[action.index].count - 1 : 0;
+      return {
+        ...state,
+        lastUpdated: Date.now(),
+        inventories
       };
     }
 
