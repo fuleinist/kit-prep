@@ -17,7 +17,7 @@ export default function reducer(state: IState = INITIAL_STATE, action: Action) {
 
     case 'update request': {
       const requests: IRequest[] = [...state.requests];
-      requests[action.index].name = action.value;
+      requests[action.index][action.name] = action.value;
       return {
         ...state,
         lastUpdated: Date.now(),
@@ -67,7 +67,7 @@ export default function reducer(state: IState = INITIAL_STATE, action: Action) {
 
     case 'update inventory': {
       const inventories: IInventory[] = [...state.requests];
-      inventories[action.index].name = action.value;
+      inventories[action.index][action.name] = action.value;
       return {
         ...state,
         lastUpdated: Date.now(),

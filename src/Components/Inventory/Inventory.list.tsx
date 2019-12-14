@@ -5,7 +5,7 @@ import React, {useCallback} from 'react';
 import {IState, useMappedState} from '../../Redux/Store';
 import InventoryItem from './Inventory.item';
 
-export default function InventoryList() {
+export default function InventoryList({onselect}) {
   const {lastUpdated, InventoryCount} = useMappedState(
     useCallback(
       (state: IState) => ({
@@ -20,7 +20,7 @@ export default function InventoryList() {
       <div className={styles.count}>You have {InventoryCount} inventories</div>
       <ul className={styles.inventories}>
         {new Array(InventoryCount).fill(null).map((_, index) => (
-          <InventoryItem index={index} key={index} />
+          <InventoryItem index={index} key={index} onselect={onselect}/>
         ))}
       </ul>
       <div className={styles.lastUpdated}>

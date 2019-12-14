@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styles } from './Input.component.style';
 import { InputProps, InputPropsConcrete, inputPropsDefault } from '../Input/Input.component.props';
 
@@ -11,15 +11,18 @@ export const Input = (props: InputProps<String>): JSX.Element => {
   };
 
   const [attrvalue, setAttrValue] = useState(value)
-
-  const {onchange, onclick} = useReduxFormEvents({type: dispatchAction || 'default', index});
-
+  const {onchange, onclick} = useReduxFormEvents({type: dispatchAction || 'default', index, name});
+  console.log({attrvalue, value})
   const handleChange = (type !== 'button') ? (e) => {
     setAttrValue(e.target.value);
     onchange(e);
   } : () => null
 
+  useEffect(() => {
+    setAttrValue(value);
+  }, [value])
+
   return (
-    <input onClick={(type === 'button')? onclick : () => null} onChange={handleChange} className={styles.root[variable || 'base']} {...{type, value: attrvalue}} {...rest} />
+    <input onClick={(type === 'button')? onclick : () => null} onChange={handleChange} className={styles[variable || 'base']} {...{type, value: attrvalue}} {...rest} />
   );
 };

@@ -6,7 +6,7 @@ export const styles = {
       font-size: 12px;
     `,
     enlarged: css`
-      font-size: 12px;
+      font-size: 16px;
     `,
   }
 };
