@@ -4,6 +4,6 @@ import { InputProps } from '../Input/Input.component.props';
 export interface IForm {
   inputs: InputProps<String>[] | [],
   onsubmit?: (event: SyntheticEvent<EventTarget>) => void, 
-  onchange?: ((dispatchEvent: string) => (event: ChangeEvent<HTMLInputElement>) => void), 
-  onclick?: ((dispatchEvent: string) => (event: MouseEvent<HTMLInputElement>) => void)
+  onchange?: (dispatchAction: string) => (event: ChangeEvent<HTMLInputElement>) => void, 
+  onclick?: (dispatchAction: string) => (event: MouseEvent<HTMLInputElement>) => void
 }

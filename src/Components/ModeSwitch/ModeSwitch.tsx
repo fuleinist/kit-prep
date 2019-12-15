@@ -2,7 +2,9 @@ import {css} from 'emotion';
 import React, {useCallback} from 'react';
 import {IState, useMappedState, useDispatch} from '../../Redux/Store';
 
-export default function ModeSwitch(): JSX.Element {
+import { ModeSwitchProps } from './ModeSwitch.props'
+
+export default function ModeSwitch(props: ModeSwitchProps): JSX.Element {
   const dispatch = useDispatch();
   const {mode} = useMappedState(
     useCallback(

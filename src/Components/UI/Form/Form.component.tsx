@@ -10,7 +10,7 @@ export function elemT<T>(array: T): Array<InputProps<String>> {
 }
 
 export const Form = (props: IForm): JSX.Element => {
-  const { inputs, data, onsubmit, onchange, onclick, ...rest } = {
+  const { index, inputs, onsubmit, onchange, onclick, ...rest } = {
     ...props,
   };
 
@@ -21,10 +21,9 @@ export const Form = (props: IForm): JSX.Element => {
   
   return (
     <form onSubmit={handleSubmit} {...rest}>
-      {(inputs && Array.isArray(inputs))? elemT(inputs).map(({name, type, value, variable, dispatchAction, ...rest}: InputProps<String>, key: number) => (
-        <Input onChange={onchange(dispatchAction)} onClick={(type === 'button') ? onclick(dispatchAction) : ()=>()=>({})} name={name} key={key} type={type} value={data[name] || value} variable={variable} {...rest} />
+      {(inputs && Array.isArray(inputs))? elemT(inputs).map(({type, name, value, variable, dispatchAction, ...rest}: InputProps<String>, key: number) => (
+        <Input index={index} key={key} name={name} type={type} value={value} variable={variable} dispatchAction={dispatchAction} {...rest} />
       )) : null}
-      {onchange? null : <input type="submit" value="Update" />}
     </form>
   );
 };

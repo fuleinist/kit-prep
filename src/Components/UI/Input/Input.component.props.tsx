@@ -1,14 +1,13 @@
-import { ChangeEvent, MouseEvent } from 'react'
-
 export type InputProps<T> = {
+  index?: number;
   type?: string;
   name: string;
   value?: string | number;
   placeholder?: string;
   variable?: string;
   dispatchAction?: string;
-  onChange?: ((event: ChangeEvent<HTMLInputElement>) => void);
-  onClick?: ((event: MouseEvent<HTMLInputElement>) => void);
+  onChange?: ((event: React.ChangeEvent<HTMLInputElement>) => void);
+  onClick?: ((event: React.MouseEvent<HTMLInputElement>) => void);
 }
 
 export type InputPropsConcrete = InputProps<string> & InputPropsDefault;

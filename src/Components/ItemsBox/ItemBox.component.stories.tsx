@@ -4,10 +4,9 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
 import Test from '../../Containers/Test/Test.container'
-import ItemEditor from './ItemEditor.component';
+import ItemsBox from './ItemsBox.component';
 
-storiesOf('Component/ItemEditor', module)
+storiesOf('Component/ItemsBox', module)
   .addDecorator(withA11y)
   .addDecorator(withKnobs)
-  .add('ItemEditor on inventories', () => <Test><ItemEditor name="inventories" index={1} /></Test>)
-  .add('ItemEditor on requests', () => <Test><ItemEditor name="requests" index={1} /></Test>)
+  .add('ItemsBox', () => <Test><ItemsBox name="inventory" /></Test>)

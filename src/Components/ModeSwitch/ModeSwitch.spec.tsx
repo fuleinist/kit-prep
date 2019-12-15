@@ -1,11 +1,11 @@
 import { render } from 'react-testing-library';
-import ItemEditor from './ItemEditor.component';
+import ModeSwitch from './ModeSwitch';
 
-describe(`<ItemEditor />`, () => {
+describe(`<ModeSwitch />`, () => {
   it(`should render without crash`, async () => {
     const { unmount } = render(
       <div>
-        <ItemEditor name="inventory" />
+        <ModeSwitch />
       </div>,
     );
     unmount();
