@@ -54,8 +54,8 @@ export const INITIAL_STATE: IState = {
     { name:'Biscuit', count: 5 }
   ],
   inventories: [
-    { name:'Cake', count: 5 },
-    { name:'Biscuit', count: 5 }
+    { name:'Egg', count: 5 },
+    { name:'Bacon', count: 5 }
   ],
 };
 

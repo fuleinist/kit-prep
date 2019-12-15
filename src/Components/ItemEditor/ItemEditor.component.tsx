@@ -1,5 +1,5 @@
 import {css} from 'emotion';
-import React, {useState, useCallback} from 'react';
+import React, {useCallback} from 'react';
 import {IState, useDispatch, useMappedState} from '../../Redux/Store';
 import { ItemEditorProps } from './ItemEditor.component.props';
 import { Form } from '../UI/Form/Form.component';
@@ -10,6 +10,13 @@ const ItemInputs = (itemName: string) => [
     value: 'test',
     placeholder: `Add ${itemName}`,
     dispatchAction: `Update ${itemName}`,
+    variable: 'base'
+  },
+  { 
+    type: 'text',
+    name: 'count',
+    value: '',
+    dispatchAction: `Update Total ${itemName}`,
     variable: 'base'
   },
   { 
@@ -28,21 +35,25 @@ const ItemInputs = (itemName: string) => [
   },
 ];
 
-export default function ItemEditor({name}: ItemEditorProps): JSX.Element {
-  const [item, setItem] = useState('');
+export default function ItemEditor({name, index}: ItemEditorProps): JSX.Element {
+  const itemSelected = useMappedState(
+    useCallback((state: IState) => state[name][index], [index, name]),
+  );
   const dispatch = useDispatch();
 
   const onsubmit = () => {};
-  const onchange = ({dispatchAction}) => (event) => {
+  const onchange = (dispatchAction) => (event) => {
+    console.log({dispatchAction, event})
     dispatch({action: dispatchAction, value: event.target.value});
   };
-  const onclick = ({dispatchAction}) => (event) => {
+  const onclick = (dispatchAction) => (event) => {
+    console.log({dispatchAction, event})
     dispatch({action: dispatchAction});
   };
 
   return (
     <div className={styles.root}>
-      <Form inputs={ItemInputs(name)} {...{onsubmit, onchange, onclick}}/>
+      <Form data={itemSelected} inputs={ItemInputs(name)} {...{onsubmit, onchange, onclick}}/>
     </div>
   );
 }

@@ -10,22 +10,9 @@ export function elemT<T>(array: T): Array<InputProps<String>> {
 }
 
 export const Form = (props: IForm): JSX.Element => {
-  const { inputs, onsubmit, onchange, onclick, ...rest } = {
+  const { inputs, data, onsubmit, onchange, onclick, ...rest } = {
     ...props,
   };
-  console.log(inputs)
-
-  const handleClick = onclick || ((event) => {
-    event.preventDefault();
-    console.log('Clicked');
-    console.log(event.target);
-  })
-
-  const handleChange = onchange || ((event) => {
-    event.preventDefault();
-    console.log('Updated');
-    console.log(event.target);
-  })
 
   const handleSubmit = onsubmit || ((event) => {
     console.log('Submitted');
@@ -34,10 +21,10 @@ export const Form = (props: IForm): JSX.Element => {
   
   return (
     <form onSubmit={handleSubmit} {...rest}>
-      {(inputs && Array.isArray(inputs))? elemT(inputs).map(({type, value, variable, ...rest}: InputProps<String>, key: number) => (
-        <Input onChange={handleChange} onClick={(type === 'button') ? handleClick : ()=>({})} key={key} type={type} value={value} variable={variable} {...rest} />
+      {(inputs && Array.isArray(inputs))? elemT(inputs).map(({name, type, value, variable, dispatchAction, ...rest}: InputProps<String>, key: number) => (
+        <Input onChange={onchange(dispatchAction)} onClick={(type === 'button') ? onclick(dispatchAction) : ()=>()=>({})} name={name} key={key} type={type} value={data[name] || value} variable={variable} {...rest} />
       )) : null}
-      {handleChange? null : <input type="submit" value="Update" />}
+      {onchange? null : <input type="submit" value="Update" />}
     </form>
   );
 };
