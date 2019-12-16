@@ -10,6 +10,6 @@ import InventoryList from './Inventory.list';
 storiesOf('Component/Inventory', module)
   .addDecorator(withA11y)
   .addDecorator(withKnobs)
-  .add('InventoryItem', () => <Test><InventoryItem index={1} /></Test>)
+  .add('InventoryItem', () => <Test><InventoryItem index={1} onselect={() => console.log}/></Test>)
   .add('InventoryInput', () => <Test><InventoryInput /></Test>)
-  .add('InventoryList', () => <Test><InventoryList /></Test>)
+  .add('InventoryList', () => <Test><InventoryList onselect={() => console.log}/></Test>)

@@ -5,12 +5,12 @@ import React, {useCallback} from 'react';
 import {useDispatch, useMappedState} from '../../Redux/Store';
 import {IState, IInventory} from '../../Redux/Store';
 
-export default function InventoryItem({index, onselect}: {index: number}): JSX.Element {
+export default function InventoryItem({index, onselect}: {index: number, onselect: Function}): JSX.Element {
   const {Inventory, deleteInventory} = useInventory(index);
 
   return (
     <li className={styles.root} onClick={onselect(index)}>
-      <span>{Inventory.name}</span> <span>{Inventory.count}</span>
+      <span>{Inventory.name}</span><span>{Inventory.count}</span>
       <button onClick={deleteInventory}>Delete</button>
     </li>
   );

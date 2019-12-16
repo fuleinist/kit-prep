@@ -2,8 +2,8 @@
 
 import {css} from 'emotion';
 import React from 'react';
-import RequestInput from './Components/Request/RequestInput';
-import RequestList from './Components/Request/RequestList';
+import RequestInput from './Components/Request/Request.input';
+import RequestList from './Components/Request/Request.list';
 
 export default function App() {
   return (

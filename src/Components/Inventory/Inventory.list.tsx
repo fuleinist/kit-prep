@@ -5,7 +5,7 @@ import React, {useCallback} from 'react';
 import {IState, useMappedState} from '../../Redux/Store';
 import InventoryItem from './Inventory.item';
 
-export default function InventoryList({onselect}) {
+export default function InventoryList({onselect}: {onselect: (index: number) => (event: any) => void;}) {
   const {lastUpdated, InventoryCount} = useMappedState(
     useCallback(
       (state: IState) => ({

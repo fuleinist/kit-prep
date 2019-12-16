@@ -4,10 +4,10 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
 import Test from '../../Containers/Test/Test.container'
-import ItemEditor from './ItemEditor.component';
+import PanelBox from './PanelBox.component';
 
-storiesOf('Component/ItemEditor', module)
+storiesOf('Component/PanelBox', module)
   .addDecorator(withA11y)
   .addDecorator(withKnobs)
-  .add('ItemEditor on inventories', () => <Test><ItemEditor name="inventory" index={1} /></Test>)
-  .add('ItemEditor on requests', () => <Test><ItemEditor name="request" index={1} /></Test>)
+  .add('PanelBox Chef', () => <Test><PanelBox variable="chef" /></Test>)
+  .add('PanelBox Storeman', () => <Test><PanelBox variable="sotreman" /></Test>)
