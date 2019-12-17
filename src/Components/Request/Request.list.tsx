@@ -1,11 +1,9 @@
-// Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved
-
 import {css} from 'emotion';
 import React, {useCallback} from 'react';
 import {IState, useMappedState} from '../../Redux/Store';
-import RequestItem from './RequestItem';
+import RequestItem from './Request.item';
 
-export default function RequestList() {
+export default function RequestList({type, onselect}: {type: string, onselect: (index: number) => (event: any) => void;}) {
   const {lastUpdated, RequestCount} = useMappedState(
     useCallback(
       (state: IState) => ({

@@ -1,11 +1,13 @@
 export type InputProps<T> = {
   index?: number;
-  dispatchAction?: string;
   type?: string;
-  name?: string;
+  name: string;
   value?: string | number;
   placeholder?: string;
   variable?: string;
+  dispatchAction?: string;
+  onChange?: ((event: React.ChangeEvent<HTMLInputElement>) => void);
+  onClick?: ((event: React.MouseEvent<HTMLInputElement>) => void);
 }
 
 export type InputPropsConcrete = InputProps<string> & InputPropsDefault;

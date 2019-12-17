@@ -17,6 +17,12 @@ const mockprops: IForm = {
       variable: 'base'
     },
     { 
+      type: 'text',
+      name: 'count',
+      value: 'test',
+      variable: 'base'
+    },
+    { 
       type: 'button',
       name: 'add',
       value: '+',
