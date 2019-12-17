@@ -1,5 +1,6 @@
 export type InputProps<T> = {
-  dispatchAction: string;
+  index?: number;
+  dispatchAction?: string;
   type?: string;
   name?: string;
   value?: string | number;

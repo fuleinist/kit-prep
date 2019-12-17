@@ -13,7 +13,7 @@ export const Input = (props: InputProps<String>): JSX.Element => {
   const [attrvalue, setAttrValue] = useState(value)
   const {onchange, onclick} = useReduxFormEvents({type: dispatchAction || 'default', index, name});
   console.log({attrvalue, value})
-  const handleChange = (type !== 'button') ? (e) => {
+  const handleChange = (type !== 'button') ? (e: React.ChangeEvent<HTMLInputElement>) => {
     setAttrValue(e.target.value);
     onchange(e);
   } : () => null

@@ -6,11 +6,11 @@ import React, {useState} from 'react';
 import ItemEditor from '../ItemEditor/ItemEditor.component';
 import InventoryList from '../Inventory/Inventory.list';
 
-const ItemBox = ({name}) => {
+const ItemBox = ({name}: {name: string}) => {
     const [selected, setSelected] = useState();
     return (
         <div className={styles.root}>
-          <InventoryList onselect={(index) => (event) => setSelected(index)} />
+          <InventoryList onselect={(index: number) => (event: React.SyntheticEvent<HTMLElement>) => setSelected(index)} />
           <ItemEditor name={name} index={selected} />
         </div>
       );

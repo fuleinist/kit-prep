@@ -1,7 +1,14 @@
 import React from 'react'
 import {useDispatch} from '../../Redux/Store'
 
-const useFormEvents = ({type, index, ...rest}) => {
+type UseReduxFormEvents = {
+  type: string, 
+  index?: number,
+  // https://nathanbirrell.me/notes/typescript-accept-any-prop/
+  [x: string]: any
+}
+
+const useReduxFormEvents = ({type, index, ...rest}: UseReduxFormEvents) => {
   const dispatch = useDispatch();
   const onsubmit = () => {};
   const onchange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,4 +20,4 @@ const useFormEvents = ({type, index, ...rest}) => {
   return { onsubmit, onchange, onclick };
 }
 
-export default useFormEvents;
+export default useReduxFormEvents;

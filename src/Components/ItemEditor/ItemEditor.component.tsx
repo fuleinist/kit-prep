@@ -1,10 +1,10 @@
 import {css} from 'emotion';
 import React, {useCallback} from 'react';
-import {IState, useMappedState, plural} from '../../Redux/Store';
+import {GeneralItem, IState, useMappedState, plural} from '../../Redux/Store';
 import { ItemEditorProps } from './ItemEditor.component.props';
 import { Form } from '../UI/Form/Form.component';
 
-const ItemInputs = (itemName: string, {name, count}: object) => [
+const ItemInputs = (itemName: string, {name, count}: GeneralItem) => [
   {
     type: 'text',
     name: 'name',
