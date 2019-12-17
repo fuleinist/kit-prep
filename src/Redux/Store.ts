@@ -42,6 +42,10 @@ export type Action =
       request: IRequest;
     }
   | {
+    type: 'update request';
+    request: IRequest;
+  }
+  | {
       type: 'delete request';
       index: number;
     }
@@ -56,6 +60,10 @@ export type Action =
   | {
     type: 'add inventory';
     inventory: IInventory;
+  }
+  | {
+    type: 'update inventory';
+    request: IRequest;
   }
   | {
     type: 'delete inventory';
