@@ -1,4 +1,4 @@
 export interface ItemEditorProps {
   name: string,
-  index: number
+  index?: number
 }

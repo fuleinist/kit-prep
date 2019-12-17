@@ -51,7 +51,7 @@ export default function ItemEditor({name, index}: ItemEditorProps): JSX.Element 
   );
   return (
     <div className={styles.root}>
-      <Form inputs={ItemInputs(name, item || {})} {...{index}}/>
+      <Form name={name} inputs={ItemInputs(name, item || {})} {...{index}}/>
       <div>Last updated: {lastUpdated ? new Date(lastUpdated).toString() : 'never'}</div>
     </div>
   );

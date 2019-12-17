@@ -4,18 +4,18 @@ import { InputProps, InputPropsConcrete, inputPropsDefault } from '../Input/Inpu
 
 import useReduxFormEvents from '../../../Hooks/UseReduxFormEvents/UseReduxFormEvents.hook';
 
-export const Input = (props: InputProps<String>): JSX.Element => {
+export const Input = (props: InputProps<String>): JSX.Element | null => {
   const {index, name, type, value, variable, dispatchAction, ...rest }: InputPropsConcrete = {
     ...inputPropsDefault,
     ...props
   };
 
-  const [attrvalue, setAttrValue] = useState(value)
+  const [attrValue, setAttrValue] = useState(value)
   const {onchange, onclick} = useReduxFormEvents({type: dispatchAction || 'default', index, name});
-  console.log({attrvalue, value})
-  const handleChange = (type !== 'button') ? (e) => {
-    setAttrValue(e.target.value);
-    onchange(e);
+
+  const handleChange = (type !== 'button') ? (e: React.SyntheticEvent<HTMLInputElement, Event>) => {
+    setAttrValue((e.target as HTMLInputElement).value);
+    if(index) onchange(e as React.ChangeEvent<HTMLInputElement>);
   } : () => null
 
   useEffect(() => {
@@ -23,6 +23,6 @@ export const Input = (props: InputProps<String>): JSX.Element => {
   }, [value])
 
   return (
-    <input onClick={(type === 'button')? onclick : () => null} onChange={handleChange} className={styles[variable || 'base']} {...{type, value: attrvalue}} {...rest} />
+    (type === 'button'&&!index) ? null : <input onClick={(type === 'button')? onclick : () => null} onChange={handleChange} className={styles[variable || 'base']} {...{type, name , value: attrValue}} {...rest} />
   );
 };
