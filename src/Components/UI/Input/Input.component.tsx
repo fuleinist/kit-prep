@@ -23,6 +23,7 @@ export const Input = (props: InputProps<String>): JSX.Element | null => {
   }, [value])
 
   return (
-    (type === 'button'&&!index) ? null : <input onClick={(type === 'button')? onclick : () => null} onChange={handleChange} className={styles[variable || 'base']} {...{type, name , value: attrValue}} {...rest} />
+    (type === 'button'&&(!index&&name.match(/(add|minus)/g))) ? 
+      null : <input onClick={(type === 'button')? onclick : () => null} onChange={handleChange} className={styles[variable || 'base']} {...{type, name , value: attrValue}} {...rest} />
   );
 };

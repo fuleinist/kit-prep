@@ -19,7 +19,7 @@ export default function ActionButton({actionName, ...rest}: any): JSX.Element {
 
   return (
     <div className={styles.root}>
-      <Input {...inputProps} />
+      <Input {...inputProps} {...rest} />
     </div>
   );
 }

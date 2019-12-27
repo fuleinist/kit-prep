@@ -66,7 +66,7 @@ export default function reducer(state: IState = INITIAL_STATE, action: Action) {
     }
 
     case 'update inventory': {
-      const inventories: IInventory[] = [...state.requests];
+      const inventories: IInventory[] = [...state.inventories];
       inventories[action.index][action.name] = action.value;
       return {
         ...state,

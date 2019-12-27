@@ -15,7 +15,7 @@ const PanelBox = ({variable}: {variable: string}) => {
       return () => {
         setSelected(undefined)
       }
-    })
+    }, []);
 
     return (
         <div className={styles.root}>

@@ -43,6 +43,9 @@ export type Action =
     }
   | {
     type: 'update request';
+    index: string;
+    name: string;
+    value: string;
     request: IRequest;
   }
   | {
@@ -63,7 +66,10 @@ export type Action =
   }
   | {
     type: 'update inventory';
-    request: IRequest;
+    index: string;
+    name: string;
+    value: string;
+    inventory: IInventory;
   }
   | {
     type: 'delete inventory';

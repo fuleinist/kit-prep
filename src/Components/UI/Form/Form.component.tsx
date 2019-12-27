@@ -17,13 +17,16 @@ export const Form = (props: IForm): JSX.Element => {
 
   const { onsubmit } = useReduxFormEvents({type: `add ${name}` || 'default', name});
 
-  const handleSubmit = !index ? ((event) => {
+  const handleSubmit = !index ? ((event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
+    const formEle = event.target as HTMLFormElement;
+    const formData = new FormData(formEle);
     let result: Object = {};
-    result[name] = {};
-    for(var pair of formData.entries()) {
-      result[name][pair[0]] = pair[1];
+    if(name) {
+      result[name] = {};
+      for(var pair of formData.entries()) {
+        result[name][pair[0]] = pair[1];
+      }
     }
     onsubmit(result);
   }) : () => console.log;

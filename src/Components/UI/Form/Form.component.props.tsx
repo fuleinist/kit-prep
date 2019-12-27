@@ -3,6 +3,7 @@ import { InputProps } from '../Input/Input.component.props';
 
 export interface IForm {
   index?: number,
+  name?: string,
   inputs: InputProps<String>[] | [],
   onsubmit?: (event: SyntheticEvent<EventTarget>) => void, 
   onchange?: (dispatchAction: string) => (event: ChangeEvent<HTMLInputElement>) => void, 

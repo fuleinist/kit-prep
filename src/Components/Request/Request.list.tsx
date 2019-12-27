@@ -18,7 +18,7 @@ export default function RequestList({type, onselect}: {type: string, onselect: (
       <div className={styles.count}>You have {RequestCount} Requests</div>
       <ul className={styles.Requests}>
         {new Array(RequestCount).fill(null).map((_, index) => (
-          <RequestItem index={index} key={index} />
+          <RequestItem index={index} key={index} onselect={onselect} />
         ))}
       </ul>
       <div className={styles.lastUpdated}>

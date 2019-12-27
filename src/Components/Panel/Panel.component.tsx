@@ -18,7 +18,6 @@ export default function Panel() {
           [],
         ),
       );
-      console.log(mode)
     return (
       <div className={styles.root}>
         <PanelBox variable={mode? 'chef':'storeman'}/>
