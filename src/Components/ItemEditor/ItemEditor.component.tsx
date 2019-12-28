@@ -39,15 +39,15 @@ const ItemInputs = (itemName: string, {name, count}: GeneralItem) => [
 ];
 
 export default function ItemEditor({name, index}: ItemEditorProps): JSX.Element {
-  const names = plural(name);
+  const pluralname = plural(name);
   const {lastUpdated, item} = useMappedState(
     useCallback(
       (state: IState) => ({
         lastUpdated: state.lastUpdated,
-        item: state[names][index],
-      }),
-      [names, index],
-    ),
+        item: state[pluralname][index],
+      })
+      ,[index]
+    )
   );
   return (
     <div className={styles.root}>

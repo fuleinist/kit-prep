@@ -13,7 +13,7 @@ const PanelBox = ({variable}: {variable: string}) => {
 
     useEffect(()=>{
       return () => {
-        setSelected(undefined)
+        setSelected(undefined);
       }
     }, []);
 
@@ -22,7 +22,7 @@ const PanelBox = ({variable}: {variable: string}) => {
           {(variable === 'chef')?
           <>
             <RequestList filter={2} onselect={(index) => (event) => setSelected(index)} />
-            <RequestList type="selectable" filter={1} onselect={(index) => (event) => setSelected(index)} />
+            <RequestList type="selectable" filter={1} onselect={(index) => (event) => { setSelected(index);}} />
             <ActionButton actionName="fulfill requests" />
             <ItemEditor name="request" index={selected} />
           </>
