@@ -19,8 +19,8 @@ export interface GeneralItem {
 }
 
 export interface IRequest extends GeneralItem {
-  // default 0 is requested, 1 is satisfied
-  status: 0 | 1;
+  // default 1 is requested, 2 is satisfied
+  status: 1 | 2;
 }
 
 export interface IInventory extends GeneralItem {}
@@ -100,8 +100,11 @@ export const INITIAL_STATE: IState = {
   lastUpdated: 0,
   mode: true,
   requests: [
-    { name:'Cake', count: 5, status: 0 },
-    { name:'Biscuit', count: 5, status: 0 }
+    { name:'Cake', count: 5, status: 1 },
+    { name:'Biscuit', count: 5, status: 1 },
+    { name:'Suger', count: 5, status: 1 },
+    { name:'Egg', count: 5, status: 2 },
+    { name:'Bacon', count: 5, status: 2 }
   ],
   inventories: [
     { name:'Egg', count: 5 },

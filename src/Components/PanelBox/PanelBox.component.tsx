@@ -21,8 +21,8 @@ const PanelBox = ({variable}: {variable: string}) => {
         <div className={styles.root}>
           {(variable === 'chef')?
           <>
-            <RequestList type="satisfied" onselect={(index) => (event) => setSelected(index)} />
-            <RequestList type="requested" onselect={(index) => (event) => setSelected(index)} />
+            <RequestList filter={2} onselect={(index) => (event) => setSelected(index)} />
+            <RequestList type="selectable" filter={1} onselect={(index) => (event) => setSelected(index)} />
             <ActionButton actionName="fulfill requests" />
             <ItemEditor name="request" index={selected} />
           </>

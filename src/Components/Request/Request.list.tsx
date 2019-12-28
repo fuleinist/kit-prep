@@ -3,7 +3,7 @@ import React, {useCallback} from 'react';
 import {IState, useMappedState} from '../../Redux/Store';
 import RequestItem from './Request.item';
 
-export default function RequestList({type, onselect}: {type: string, onselect: (index: number) => (event: any) => void;}) {
+export default function RequestList({type, filter, onselect}: {type?: string, filter?: number, onselect: (index: number) => (event: any) => void;}) {
   const {lastUpdated, RequestCount} = useMappedState(
     useCallback(
       (state: IState) => ({
@@ -18,7 +18,7 @@ export default function RequestList({type, onselect}: {type: string, onselect: (
       <div className={styles.count}>You have {RequestCount} Requests</div>
       <ul className={styles.Requests}>
         {new Array(RequestCount).fill(null).map((_, index) => (
-          <RequestItem index={index} key={index} onselect={onselect} />
+          <RequestItem filter={filter} index={index} key={index} onselect={(type === 'selectable')? onselect : () => {}} />
         ))}
       </ul>
       <div className={styles.lastUpdated}>

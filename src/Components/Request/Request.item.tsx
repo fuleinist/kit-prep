@@ -5,20 +5,20 @@ import React, {useCallback} from 'react';
 import {useDispatch, useMappedState} from '../../Redux/Store';
 import {IState, IRequest} from '../../Redux/Store';
 
-export default function RequestItem({index, onselect}: {index: number, onselect: Function}): JSX.Element {
-  const {Request, deleteRequest} = useRequest(index);
+export default function RequestItem({index, filter, onselect}: {index: number, filter: number, onselect: Function}): JSX.Element {
+  const {Request, deleteRequest}: {Request: IRequest | null, deleteRequest: () => void | null} = useRequest(index, filter) || {};
 
-  return (
+  return Request ? (
     <li className={styles.root} onClick={onselect(index)}>
       <span>{Request.name}</span> <span>{Request.status}</span> <span>{Request.count}</span>
       <button onClick={deleteRequest}>Delete</button>
     </li>
-  );
+  ) : <div></div>;
 }
 
 // Example of creating a custom hook to encapsulate the store
-function useRequest(index: number): {Request: IRequest; deleteRequest: () => void} {
-  const Request = useMappedState(
+function useRequest(index: number, filter: number | null): {Request: IRequest | null; deleteRequest: () => void} | null {
+  const Request: IRequest = useMappedState(
     useCallback((state: IState) => state.requests[index], [index]),
   );
 
@@ -27,7 +27,7 @@ function useRequest(index: number): {Request: IRequest; deleteRequest: () => voi
     dispatch,
     index,
   ]);
-  return {Request, deleteRequest};
+  return (!filter || filter === Request.status) ? {Request, deleteRequest} : null;
 }
 
 const styles = {
